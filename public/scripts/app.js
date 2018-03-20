@@ -59,7 +59,8 @@ var App = function (_React$Component) {
                         "Welcome back, Student!"
                     )
                 ),
-                React.createElement(Main, { alerts: this.state.alerts })
+                React.createElement(Main, { alerts: this.state.alerts }),
+                React.createElement(Footer, null)
             );
         }
     }]);
@@ -111,33 +112,15 @@ var Nav = function (_React$Component2) {
 var Main = function (_React$Component3) {
     _inherits(Main, _React$Component3);
 
-    function Main(props) {
+    function Main() {
         _classCallCheck(this, Main);
 
-        var _this3 = _possibleConstructorReturn(this, (Main.__proto__ || Object.getPrototypeOf(Main)).call(this, props));
-
-        _this3.state = {
-            hidden: true
-        };
-        _this3.helloMessage = _this3.helloMessage.bind(_this3);
-        return _this3;
+        return _possibleConstructorReturn(this, (Main.__proto__ || Object.getPrototypeOf(Main)).apply(this, arguments));
     }
 
     _createClass(Main, [{
-        key: "helloMessage",
-        value: function helloMessage() {
-            this.setState(function (prevState) {
-                return {
-                    hidden: !prevState.hidden
-                };
-            });
-            console.log(this.state.hidden);
-        }
-    }, {
         key: "render",
         value: function render() {
-            var _this4 = this;
-
             return React.createElement(
                 "main",
                 null,
@@ -151,13 +134,7 @@ var Main = function (_React$Component3) {
                     { className: "no-alert" },
                     "No notifications available"
                 ),
-                React.createElement(
-                    "ul",
-                    { className: "alerts" },
-                    this.props.alerts.map(function (alert) {
-                        return React.createElement(Alert, { key: alert.type, helloMessage: _this4.helloMessage, type: alert.type, title: alert.title, message: alert.message });
-                    })
-                )
+                React.createElement(Alerts, { alerts: this.props.alerts })
             );
         }
     }]);
@@ -165,8 +142,51 @@ var Main = function (_React$Component3) {
     return Main;
 }(React.Component);
 
-var Alert = function (_React$Component4) {
-    _inherits(Alert, _React$Component4);
+var Alerts = function (_React$Component4) {
+    _inherits(Alerts, _React$Component4);
+
+    function Alerts(props) {
+        _classCallCheck(this, Alerts);
+
+        var _this4 = _possibleConstructorReturn(this, (Alerts.__proto__ || Object.getPrototypeOf(Alerts)).call(this, props));
+
+        _this4.state = {
+            hidden: true
+        };
+        _this4.helloMessage = _this4.helloMessage.bind(_this4);
+        return _this4;
+    }
+
+    _createClass(Alerts, [{
+        key: "helloMessage",
+        value: function helloMessage() {
+            this.setState(function (prevState) {
+                return {
+                    hidden: !prevState.hidden
+                };
+            });
+            console.log(this.state.hidden);
+        }
+    }, {
+        key: "render",
+        value: function render() {
+            var _this5 = this;
+
+            return React.createElement(
+                "ul",
+                { className: "alerts" },
+                this.props.alerts.map(function (alert) {
+                    return React.createElement(Alert, { key: alert.type, helloMessage: _this5.helloMessage, type: alert.type, title: alert.title, message: alert.message });
+                })
+            );
+        }
+    }]);
+
+    return Alerts;
+}(React.Component);
+
+var Alert = function (_React$Component5) {
+    _inherits(Alert, _React$Component5);
 
     function Alert() {
         _classCallCheck(this, Alert);
@@ -203,6 +223,88 @@ var Alert = function (_React$Component4) {
     }]);
 
     return Alert;
+}(React.Component);
+
+var Footer = function (_React$Component6) {
+    _inherits(Footer, _React$Component6);
+
+    function Footer() {
+        _classCallCheck(this, Footer);
+
+        return _possibleConstructorReturn(this, (Footer.__proto__ || Object.getPrototypeOf(Footer)).apply(this, arguments));
+    }
+
+    _createClass(Footer, [{
+        key: "render",
+        value: function render() {
+            return React.createElement(
+                "footer",
+                null,
+                React.createElement(
+                    "ul",
+                    { className: "option-links" },
+                    React.createElement(
+                        "li",
+                        { className: "options" },
+                        React.createElement(
+                            "a",
+                            { href: "#" },
+                            React.createElement("i", { className: "fa fa-calendar-o", "aria-hidden": "true" })
+                        ),
+                        React.createElement(
+                            "div",
+                            { className: "option-label" },
+                            "Schedule"
+                        )
+                    ),
+                    React.createElement(
+                        "li",
+                        { className: "options" },
+                        React.createElement(
+                            "a",
+                            { href: "#" },
+                            React.createElement("i", { className: "fa fa-bookmark-o", "aria-hidden": "true" })
+                        ),
+                        React.createElement(
+                            "div",
+                            { className: "option-label" },
+                            "Binder"
+                        )
+                    ),
+                    React.createElement(
+                        "li",
+                        { className: "options" },
+                        React.createElement(
+                            "a",
+                            { href: "#" },
+                            React.createElement("i", { className: "fa fa-paper-plane-o", "aria-hidden": "true" })
+                        ),
+                        React.createElement(
+                            "div",
+                            { className: "option-label" },
+                            "Email"
+                        )
+                    ),
+                    React.createElement(
+                        "li",
+                        { className: "options" },
+                        React.createElement(
+                            "a",
+                            { href: "#" },
+                            React.createElement("i", { className: "fa fa-user", "aria-hidden": "true" })
+                        ),
+                        React.createElement(
+                            "div",
+                            { className: "option-label" },
+                            "Profile"
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return Footer;
 }(React.Component);
 
 ReactDOM.render(React.createElement(App, null), document.getElementById('app'));

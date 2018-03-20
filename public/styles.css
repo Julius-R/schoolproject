@@ -107,7 +107,7 @@ main .titl {
     color: #F9F9F9;
     background-color: #EF7E56; }
 .alerts .alert .alert-body {
-    display: none;
+    display: block;
     width: calc(66.6666% - 1rem);
     margin: .5rem auto; }
 .alerts .alert .alert-body .buttons {

@@ -39,6 +39,7 @@ class App extends React.Component {
                     <h1 className="title">Welcome back, Student!</h1>
                 </header>
                 <Main alerts={this.state.alerts} />
+                <Footer />
             </div>
         )
     }
@@ -65,6 +66,20 @@ class Nav extends React.Component {
 
 
 class Main extends React.Component {
+    render() {
+        return(
+            <main>
+                <h1 className="titl">Alerts</h1>
+                {this.props.alerts.length < 0 && <div className="no-alert">
+                    No notifications available
+                </div>}
+                <Alerts alerts={this.props.alerts} />
+            </main>
+        )
+    }
+}
+
+class Alerts extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -81,16 +96,10 @@ class Main extends React.Component {
         console.log(this.state.hidden);
     }
     render() {
-        return(
-            <main>
-                <h1 className="titl">Alerts</h1>
-                {this.props.alerts.length < 0 && <div className="no-alert">
-                    No notifications available
-                </div>}
-                <ul className="alerts">
-                    {this.props.alerts.map((alert) => <Alert key={alert.type} helloMessage={this.helloMessage} type={alert.type} title={alert.title} message={alert.message} />)}
-                </ul>
-            </main>
+        return (
+            <ul className="alerts">
+                {this.props.alerts.map((alert) => <Alert key={alert.type} helloMessage={this.helloMessage} type={alert.type} title={alert.title} message={alert.message} />)}
+            </ul>
         )
     }
 }
@@ -110,6 +119,32 @@ class Alert extends React.Component {
                     {this.props.message}
                 </div>
             </li>
+        )
+    }
+}
+
+class Footer extends React.Component {
+    render() {
+        return (
+            <footer>
+                <ul className="option-links">
+                    <li className="options">
+                        <a href="#"><i className="fa fa-calendar-o" aria-hidden="true"></i></a>
+                        <div className="option-label">Schedule</div></li>
+                    <li className="options">
+                        <a href="#"><i className="fa fa-bookmark-o" aria-hidden="true"></i></a>
+                        <div className="option-label">Binder</div>
+                    </li>
+                    <li className="options">
+                        <a href="#"><i className="fa fa-paper-plane-o" aria-hidden="true"></i></a>
+                        <div className="option-label">Email</div>
+                    </li>
+                    <li className="options">
+                        <a href="#"><i className="fa fa-user" aria-hidden="true"></i></a>
+                        <div className="option-label">Profile</div>
+                    </li>
+                </ul>
+            </footer>
         )
     }
 }
